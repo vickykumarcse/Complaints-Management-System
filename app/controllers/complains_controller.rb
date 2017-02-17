@@ -62,7 +62,7 @@ class ComplainsController < ApplicationController
   # GET /complains/1/edit
   def edit
       if current_user.usertypeid==2
-          redirect_to 'http://localhost:3000'
+          redirect_to 'https://cms-marauders.herokuapp.com'
       end
   end
   
