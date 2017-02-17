@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
-User.update_all usertypeid: 1
 
 user_type1 = Usertype.create(usertype: "admin")
 user_type2 = Usertype.create(usertype: "public")
