@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class LogoutController < ApplicationController
-  include LogoutHelper
+  #include LogoutHelper
   def logout
     reset_session
     redirect_to logout_url.to_s
