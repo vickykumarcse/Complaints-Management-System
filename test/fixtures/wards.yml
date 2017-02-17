@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wardno: 1
+  wardname: MyString
+  zoneid: 1
+
+two:
+  wardno: 1
+  wardname: MyString
+  zoneid: 1

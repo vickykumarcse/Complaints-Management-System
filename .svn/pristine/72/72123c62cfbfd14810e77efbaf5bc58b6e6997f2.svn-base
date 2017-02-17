@@ -1,0 +1,70 @@
+<!--<p id="notice"><%= notice %></p>-->
+<div class="row" id="complain_show">
+	  <div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+			  <div class="panel-heading complain_image">
+					 <img src=" <%= @complain.imageurl_url %>" width="auto" height="auto"/>
+			  </div>
+			  
+			  <div class="panel-body">	
+
+
+					<p>
+					  <strong>Complain Id:</strong>
+					  C0000<%= @complain.id %>
+					</p>
+
+					<p>
+					  <strong>Title:</strong>
+					  <%= @complain.title %>
+					</p>
+
+					<p>
+					  <strong>Description:</strong>
+					  <%= @complain.description %>
+					</p>
+
+					<p>
+					  <strong>Zone Name:</strong>
+                        <%= Zone.where(:admin_username=>@complain.admin_username).first.zonename%>
+					</p>
+					
+					<p>
+					  <strong>Ward Name:</strong>
+                        <%= Ward.where(:wardno=>@complain.wardid).first.wardname %>
+					</p>
+
+					<p>
+					  <strong>Locality:</strong>
+					  <%= @complain.locality %>
+					</p>
+                    <p>
+					  <strong>Registration Date:</strong>
+                        <%= @complain.register_date %>
+					</p>
+                    <p>
+					  <strong>Resolved Date:</strong>
+                        <%= @complain.resolved_date %>
+					</p>
+
+			  </div>
+			  
+			  <div class="panel-footer">
+			      <div class="btn-group pull-right">
+						<p>
+                        <button type="button" class="btn btn-success">
+						 Votecount: <strong> <%= @complain.votecount %></strong></button>
+						</p>
+				 </div>
+				 
+				  <div class="btn-group pull-left">
+						<p><button type="button" class="btn btn-info">
+						 Status: <strong> <%= @complain.status %></strong></button>
+						</p>
+				  </div>
+              </div>
+		  </div>
+	  </div>				
+  </div>
+
+

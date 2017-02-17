@@ -1,0 +1,31 @@
+<%= simple_form_for @complain, html: {multipart: true} do |f| %>
+	  <% if @complain.errors.any? %>
+			<div id="errors">
+			  <h2>
+				  <%= pluralize(@complain.errors.count, "error") %>
+				  prevented this complain from saving
+			  </h2>
+			  <ul>
+				<% @complain.errors.full_messages.each do |msg| %>
+				  <li>
+					<%= msg %>
+				  </li>
+				<% end %>
+			  </ul>
+			</div>
+	  <% end %>
+	  
+	  <div class="form-group">
+		  <%= f.input :title, input_html: {class: 'form-control'} %>
+	  </div>
+	  <div class="form-group">
+		  <%= f.input :description, input_html: {class: 'form-control'} %>
+	  </div>
+	  <div class="form-group">
+		  <%= f.input :locality, input_html: {class: 'form-control'} %>
+	  </div>
+	   <div class="form-group">
+		  <%= f.input :imageurl, input_html: {class: 'form-control'} %>
+	  </div>
+	  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

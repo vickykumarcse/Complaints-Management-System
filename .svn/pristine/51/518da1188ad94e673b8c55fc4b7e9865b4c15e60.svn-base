@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<div class="container" >
+    <div class="row">
+
+          <div class="col-md-6">
+            <div class="row">
+            
+		   <div class="box panel panel-default">
+               	 <div class="panel panel-heading">
+                        <h2>About</h2>
+               </div>
+               <h4 style="padding:0px 20px 0px 20px;">  <b> Complaints Management System</b> enables citizens to register the issues they face in day-to-day life as complaints.The citizen can register complaint with image of the problem they are facing as well as upvote the complaints already present.</h4>
+    
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="/images/complaints.jpg" height=300px />
+                <img src="/images/2.jpg" height=200px  />
+            </div>
+            
+              </div>
+            
+           </div>
+        
+    <div class="col-md-6">
+        <div class="row">
+            
+		 <div class="panel panel-default">
+			  <div class="panel-heading">
+                  <h2>Sign in</h2>
+              </div>
+			  
+			  <div class="panel-body">
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					 <div class="form-inputs">
+					 
+						<div class="form-group">
+							<div class="input-group">
+     						   <div class="input-group-addon">
+                                   <span class="glyphicon glyphicon-user"></span> 
+                               </div>
+                                <%= f.text_field :username, required: false, autofocus: true,:placeholder=>"Username", :class=>"form-control" %>
+                           </div>
+                       </div>
+                       <div class="form-group">
+                          <div class="input-group">
+                              <div class="input-group-addon">
+								  <span class="glyphicon glyphicon-lock"></span> 
+                               </div>
+                           
+                              <%= f.password_field :password, required: false, :placeholder=>"Password", :class=>"form-control"  %>
+                          </div>
+					  </div>
+
+					
+					  
+					 <div class="form-actions">
+						<%= f.submit "Log in", class: "btn btn-primary center-block" %>
+						<%= link_to "Login with Google", "javascript:void(0)",{  onclick:"signin()" } unless session[:userinfo].present? %>
+				     </div>
+				</div>
+					<% end %>
+
+					<%= render "devise/shared/links" %>
+                    
+			  </div>
+             <br>
+              <video width="580" height="380" autoplay controls loop>
+                    <source src="http://localhost:3000/videos/produce5.webm" type="video/webm">
+                    <source src="http://localhost:3000/videos/produce5.mp4" type="video/mp4">
+                    <source src="http://localhost:3000/videos/produce5.wmv" type="video/wmv">
+                    Your browser does not support the video tag.
+             </video>
+            </div>
+           
+           
+          
+        </div>
+         
+	  </div>
+   
+    </div>
+     
+  </div>
+
+<nav class="navbar navbar-fixed-bottom">
+  <div class="footer">
+   
+		<div class="container">
+		 <div style="color:black;text-align:center;"> <h4>Complaints Management System enables citizens to register the issues they face in day-to-day life as complaints.</h4></div>
+			  
+	    </div>		  
+	
+ </div>
+</nav>	
+<nav class="navbar navbar-fixed-bottom">
+  <div class="footer">
+   
+		<div class="container">
+		 <div style="color:black;text-align:center;"> <h4>Complaints Management System enables citizens to register the issues they face in day-to-day life as complaints.</h4></div>
+			  
+	    </div>		  
+	
+ </div>
+</nav>	 
+
+</html>

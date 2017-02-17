@@ -1,0 +1,112 @@
+<!--<p id="notice"><%= notice %></p>-->
+<div class="row" id="complain_show">
+	  <div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+                 <div class="panel-heading complain_image"> 
+                       <% @complain=Complain.find(params[:id])%>
+					 <img src=" <%= @complain.imageurl_url %>" width="auto" height="auto"/>
+			     </div>
+    <div class="panel-body">
+                <div class="form-group">
+        	        <p>
+					  <strong>Complain Id:</strong>
+					  <input type="text" value="C0000<%= @complain.id %>" class="form-control" readonly>
+					</p>
+               </div>
+         <div class="form-group">
+        	        <p>
+					  <strong>Total Vote:</strong>
+					  <input type="text" value="<%= @complain.votecount %>" class="form-control" readonly>
+					</p>
+               </div>
+				<div class="form-group">
+        	        <p>
+					  <strong>Title:</strong>
+					  <input type="text" value="<%= @complain.title %>" class="form-control" readonly>
+					</p>
+               </div>
+					<div class="form-group">
+        	        <p>
+					  <strong>Description:</strong>
+                        <textarea class="form-control"  readonly><%= @complain.description %></textarea>
+					</p>
+               </div>
+
+					<div class="form-group">
+        	        <p>
+					  <strong>Zone name:</strong>
+    <input type="text" value="<%= Zone.where(:admin_username=>@complain.admin_username).first.zonename%>" class="form-control" readonly>
+					</p>
+                </div>
+						<div class="form-group">
+        	        <p>
+					  <strong>Ward Name:</strong>
+    <input type="text" value=" <%= Ward.where(:wardno=>@complain.wardid).first.wardname %>" class="form-control" readonly>
+					</p>
+                </div>
+
+					<div class="form-group">
+        	        <p>
+					  <strong>Locality:</strong>
+                        <input type="text" value="<%= @complain.locality %>" class="form-control" readonly>
+					</p>
+               </div>
+                    <div class="form-group">
+        	        <p>
+					  <strong>Register Date:</strong>
+                        <input type="text" value="<%= @complain.register_date %>" class="form-control" readonly>
+					</p>
+               </div>
+             
+   <%= simple_form_for @complain, html: {multipart: true} do |f| %>
+	               <% if @complain.errors.any? %>
+			         <div id="errors">
+                    <h4>
+                        <%= pluralize(@complain.errors.count, "error") %>
+                        prevented this complain from saving
+                   </h4>
+			  <ul>
+				<% @complain.errors.full_messages.each do |msg| %>
+				  <li>
+					<%= msg %>
+				  </li>
+				<% end %>
+			  </ul>
+			</div>
+	           <% end %>
+          <div class="form-group">
+        	        <p>
+					  <strong>Status:</strong>
+                        
+                        <%= f.select :status, options_for_select([ "Assigned", "In Progress", "On Hold", "Done", "Resolved"]),{}, :class => 'form-control' %>
+					</p>
+               </div>
+                <div class="form-group">
+        	        <p>
+					  <strong>Comment:</strong>
+                        <%= f.text_area(:comment,:class=>"form-control") %>
+					</p>
+               </div>
+	  
+         
+         <div class="form-actions">
+                <%= f.submit :class =>'btn btn-primary center-block' %>
+            </div>
+   <% end %> 
+        <div class="form-group">
+        	        <p>
+					  <strong>Resolved Date:</strong>
+                        <input type="text" value="<%= @complain.resolved_date %>" class="form-control" readonly>
+					</p>
+               </div>
+              </div>
+		  </div>
+	  </div>				
+  </div>
+
+
+
+<%= render 'form', complain: @complain %>
+
+<%= link_to 'Show', @complain %> |
+<%= link_to 'Back', complains_path %>

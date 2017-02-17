@@ -1,0 +1,93 @@
+<div class="col-md-6 col-md-offset-3">
+	 <div class="row">
+		 <div class="panel panel-default">
+			  <div class="panel-heading">
+					<h2>Sign up</h2>
+			   </div>
+			   <div class="panel-body">
+
+				<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			    <%= devise_error_messages! %>
+				<div class="form-inputs">
+				
+				<div class="form-group">
+				<%= f.input :username, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+				</div>
+				<div class="form-group">
+				  <%= f.input :firstname, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+				</div>
+				<div class="form-group">
+				  <%= f.input :lastname, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+				</div>
+				<div class="form-group">
+				  <%= f.input :contactno, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+				</div>
+				<div class="form-group">
+				  <%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+				</div>
+				
+				
+				 <div class="form-group">
+                     <b>*Select Zone</b><br/>
+					<select id="ZoneList" onchange="fillWards();" class="form-control">
+                        <option>Select Zone</option>
+					</select>
+					<script type="text/javascript">
+						var sel = document.getElementById("ZoneList");
+						<% @zones=Zone.all %>
+						<% @zones.each do |z| %>
+							sel.add( new Option( "<%=z.id %>-<%= z.zonename %>" ) );
+					    <% end %>
+					function fillWards(){
+					 var i=document.getElementById("ZoneList").selectedIndex;
+					 console.log(i);
+					 var newsel = document.getElementById("WardList");
+					 newsel.innerHTML = "";
+					  <% @wards=Ward.order(:wardno) %>
+					  var map = new Object(); 
+					  <% @wards.each do |w| %>
+							map[<%=w.wardno %>]='<%=w.zoneid%>'+'-'+'<%=w.wardname %>'
+					   <% end %>
+					   for(var key in map) {
+							var val = map[key];
+							var str=val.split("-");
+							var k=str[0];
+							if(k==i){
+							newsel.add( new Option(key+"-"+ str[1] ) );
+							}
+						}
+					 }
+					</script>
+				</div>
+			   
+			   <div class="form-group">
+                   <b>*Select Ward</b><br/>
+				<%= f.select :wardid,{},{}, :id => "WardList", :class=>"form-control" %>
+			   </div>
+
+			  <div class="form-group">
+					<%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { class: 'form-control' } %>
+			  </div>
+
+			  <div class="form-group">
+					<%= f.input :password_confirmation, required: true, input_html: { class: 'form-control' } %>
+			  </div>
+				 <div class="form-actions">
+						<%= f.button :submit, "Sign up", class: "btn btn-primary center-block"  %>
+				 </div>
+			</div>
+			  
+			<% end %>
+
+			<%= render "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+</style>

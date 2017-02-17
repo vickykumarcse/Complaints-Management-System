@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin_username: MyString
+  public_username: MyString
+  wardid: 1
+  title: MyString
+  description: MyText
+  comment: MyText
+  votecount: 1
+  register_date: 2017-02-06
+  resolved_date: 2017-02-06
+  status: MyString
+  imageurl: MyString
+
+two:
+  admin_username: MyString
+  public_username: MyString
+  wardid: 1
+  title: MyString
+  description: MyText
+  comment: MyText
+  votecount: 1
+  register_date: 2017-02-06
+  resolved_date: 2017-02-06
+  status: MyString
+  imageurl: MyString

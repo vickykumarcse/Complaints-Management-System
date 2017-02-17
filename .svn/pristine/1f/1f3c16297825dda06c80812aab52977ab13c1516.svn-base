@@ -1,0 +1,32 @@
+<%= form_for(ward) do |f| %>
+  <% if ward.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ward.errors.count, "error") %> prohibited this ward from being saved:</h2>
+
+      <ul>
+      <% ward.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :wardno %>
+    <%= f.number_field :wardno %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wardname %>
+    <%= f.text_field :wardname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zoneid %>
+    <%= f.number_field :zoneid %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

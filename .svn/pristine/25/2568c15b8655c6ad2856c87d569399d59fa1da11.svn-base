@@ -1,0 +1,41 @@
+
+ <!--<%=link_to "download report in csv", report_complains_path(format: "csv")%>-->
+<div style="text-align:center;">
+    <%=link_to "Download Complaints Report in Excel", report_complains_path(format: "xls"), :class=>"btn btn-warning", :style=>"color:white;"%></div>
+<div class="transitions-enabled" id="complains">
+  
+    <% if @complains.empty? %>
+        <h4> There are no complains in your area!</h4>
+    <% else %>
+   
+   
+		<% @complains.each do |c| %>
+		   <div class="box panel panel-default">
+               <img src= "<%= c.imageurl_url%>"  height=200px width=250px/>
+		  
+			  <div class="panel-body">
+				  <h2>
+					  <%= link_to c.title, c %>
+				  </h2>
+				 
+					   <p class="user">
+						   Submitted by
+						   <%= User.where(:username=>c.public_username).first.firstname %>&nbsp; <%= User.where(:username=>c.public_username).first.lastname %>
+					   </p>
+					    <div class="btn-group pull-left">
+                            <p>Status:<strong><%= c.status%></strong></p>
+                      </div>
+				    <div class="btn-group pull-right">
+                           <% if current_user.usertypeid==2%>
+                      <form action="complains/addvote" method="post">
+                          <input type="hidden" name="vote" value="<%= c.id %>" />
+                            <input type="hidden" name="location" value="<%=request.original_url%>" />
+                        <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
+                    </form>
+                        <%end%>
+			      </div>
+			  </div>
+		   </div>
+		<% end %>
+    <% end %>
+</div>

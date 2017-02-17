@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Complains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Admin username</th>
+      <th>Public username</th>
+      <th>Wardid</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Comment</th>
+      <th>Votecount</th>
+      <th>Register date</th>
+      <th>Resolved date</th>
+      <th>Status</th>
+      <th>Imageurl</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complains.each do |complain| %>
+      <tr>
+		    
+        <td><%= complain.admin_username %></td>
+        <td><%= complain.public_username %></td>
+        <td><%= complain.wardid %></td>
+        <td><%= complain.title %></td>
+        <td><%= complain.description %></td>
+        <td><%= complain.comment %></td>
+        <td><%= complain.votecount %></td>
+        <td><%= complain.register_date %></td>
+        <td><%= complain.resolved_date %></td>
+        <td><%= complain.status %></td>
+        <td><%= complain.imageurl %></td>
+        <td><%= link_to 'Show', complain %></td>
+        <td><%= link_to 'Edit', edit_complain_path(complain) %></td>
+        <td><%= link_to 'Destroy', complain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Complain', new_complain_path %>

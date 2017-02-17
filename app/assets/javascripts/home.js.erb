@@ -1,0 +1,12 @@
+var lock = new Auth0Lock('CRdqay4hYX0j7jqfIUe5s1yex6KaaENX', 'nikita-rails.auth0.com', {
+    auth: {
+      redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+      responseType: 'code',
+      params: {
+        scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    }
+  });
+function signin() {
+ 	lock.show();
+}

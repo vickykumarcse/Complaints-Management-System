@@ -1,0 +1,92 @@
+<div class="col-md-6 col-md-offset-3">
+	 <div class="row">
+		 <div class="panel panel-default">
+			  <div class="panel-heading">
+					<h2>Sign up</h2>
+			   </div>
+			   <div class="panel-body">
+
+                   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			    <%= devise_error_messages! %>
+				<div class="form-inputs">
+				
+				<div class="form-group">
+                    <%= f.text_field :username, required: true, autofocus: true,:placeholder=>"Username", :class=>"form-control" %>
+				</div>
+				<div class="form-group">
+                    <%= f.text_field :firstname, required: true, autofocus: true,:placeholder=>"First Name", :class=>"form-control" %>
+				</div>
+				<div class="form-group">
+                    <%= f.text_field :lastname, required: true, autofocus: true,:placeholder=>"Last Name", :class=>"form-control" %>
+				</div>
+				<div class="form-group">
+                    <%= f.number_field :contactno, required: true, autofocus: true,:placeholder=>"Contact No.", :class=>"form-control" %>
+				</div>
+				<div class="form-group">
+                    <%= f.email_field :email, required: true, autofocus: true,:placeholder=>"Email Id", :class=>"form-control" %>
+				</div>
+				
+				
+				 <div class="form-group">
+					<select id="ZoneList" onchange="fillWards();" class="form-control">
+                        <option>Select Zone</option>
+					</select>
+					<script type="text/javascript">
+						var sel = document.getElementById("ZoneList");
+                        <% @zones=Zone.all %>
+						<% @zones.each do |z| %>
+							sel.add( new Option( "<%=z.id %>-<%= z.zonename %>" ) );
+					    <% end %>
+					function fillWards(){
+					 var i=document.getElementById("ZoneList").selectedIndex;
+					 console.log(i);
+					 var newsel = document.getElementById("WardList");
+					 newsel.innerHTML = "";
+					  <% @wards=Ward.order(:wardno) %>
+					  var map = new Object(); 
+					  <% @wards.each do |w| %>
+							map[<%=w.wardno %>]='<%=w.zoneid%>'+'-'+'<%=w.wardname %>'
+					   <% end %>
+					   for(var key in map) {
+							var val = map[key];
+							var str=val.split("-");
+							var k=str[0];
+							if(k==i){
+							newsel.add( new Option(key+"-"+ str[1] ) );
+							}
+						}
+					 }
+					</script>
+				</div>
+			   
+			   <div class="form-group">
+               
+                   <%= f.select :wardid,{},{:prompt => 'Select Ward'}, :id => "WardList", :class=>"form-control" %>
+			   </div>
+
+			  <div class="form-group">
+                  <%= f.password_field :password, required: true, autofocus: true,:placeholder=>" Create Password", :class=>"form-control", hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+			  </div>
+
+			  <div class="form-group">
+                  <%= f.password_field :password_confirmation, required: true, autofocus: true,:placeholder=>"Confirm Password", :class=>"form-control" %>
+			  </div>
+				 <div class="form-actions">
+						<%= f.submit "Sign up", class: "btn btn-primary center-block"  %>
+				 </div>
+			</div>
+			  
+			<% end %>
+
+			<%= render "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+</style>

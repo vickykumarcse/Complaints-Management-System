@@ -1,0 +1,49 @@
+
+<div style="text-align:center;">
+    <a href="myComplains?fetch=all" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+     <a href="myComplains?fetch=resolved" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">Resolved</a>
+     <a href="myComplains?fetch=closed" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;Closed&nbsp;</a>
+   
+</div>
+
+<div class="transitions-enabled" id="complains">
+  
+    <% if @complains.empty? %>
+        <h4> There are no complains in your area!</h4>
+    <% else %>
+		<% @complains.each do |c| %>
+		   <div class="box panel panel-default">
+               <img src= "<%= c.imageurl_url%>" width=250px height=200px/>
+		  
+			  <div class="panel-body">
+				  <h2>
+					  <%= link_to c.title, c %>
+				  </h2>
+				 
+					   <p class="user">
+						   Submitted by
+						   <%= User.where(:username=>c.public_username).first.firstname %> <%= User.where(:username=>c.public_username).first.lastname %>
+					   </p>
+					    <div class="btn-group pull-left">
+                            <p>Status:<strong><%= c.status%></strong></p>
+                  </div>
+                  
+				    <div class="btn-group pull-right">
+                         <% if current_user.usertypeid==2%>
+                      <form action="addvote" method="post">
+                          <input type="hidden" name="vote" value="<%= c.id %>" />
+                            <input type="hidden" name="location" value="<%=request.original_url%>" />
+                        <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
+                    </form>
+                <%end%>
+			      </div>
+                   <div style="text-align:center">
+            <%if c.status.eql?"Resolved" and c.close!=TRUE %>
+<a href="myComplains?fetch=close&id=<%= c.id%>" class="btn btn-warning" style="color:white;">Close Complaint</a>
+        <%end%>
+                </div>
+			  </div>
+		   </div>
+		<% end %>
+    <% end %>
+</div>

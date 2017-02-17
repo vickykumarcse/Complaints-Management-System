@@ -1,0 +1,51 @@
+
+<div style="text-align:center;">
+    <%if current_user.usertypeid==2%>
+    <strong> Filter By </strong><a href="show?fetch=filter-by-zone" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="show?fetch=filter-by-ward" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ward&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <%end%>
+    <strong>Sort By</strong>
+    <a href="show?fetch=sort-by-zoneno" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zone No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      <a href="show?fetch=sort-by-likes" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Likes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="show?fetch=sort-by-latest" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Latest Complaints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+   <a href="show?fetch=sort-by-oldest" class="btn btn-default" onclick ='window.location.reload();' style="color:black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oldest Complaints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>  
+   
+</div>
+
+<div class="transitions-enabled" id="complains">
+     <% if @complains.empty? %>
+        <h4> There are no complains in your area!</h4>
+    <% else %>
+		<% @complains.each do |c| %>
+		   <div class="box panel panel-default">
+               <img src= "<%= c.imageurl_url%>" width=250px height=200px/>
+		  
+			  <div class="panel-body">
+				  <h2>
+					  <%= link_to c.title, c %>
+				  </h2>
+				 
+					   <p class="user">
+						   Submitted by
+						   <%= User.where(:username=>c.public_username).first.firstname %>&nbsp; <%= User.where(:username=>c.public_username).first.lastname %>
+					   </p>
+                   <div class="btn-group pull-left">
+                       <p>Status:<strong><%= c.status%></strong></p>
+                      </div>
+				   <div class="btn-group pull-right">
+                        <% if current_user.usertypeid==2%>
+                      <form action="http://localhost:3000/complains/addvote" method="post">
+                          <input type="hidden" name="vote" value="<%= c.id %>" />
+                            <input type="hidden" name="location" value="<%=request.original_url%>" />
+                        <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
+                    </form>
+                        <%else%>
+                       Likes: <strong><%= c.votecount %></strong>
+                       <%end%>
+			      </div>
+				  
+			  </div>
+		   </div>
+		<% end %>
+    <% end %>
+</div>

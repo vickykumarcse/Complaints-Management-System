@@ -1,0 +1,30 @@
+default: &default
+   adapter: postgresql
+   encoding: unicode
+  
+development:
+   adapter: postgresql
+   encoding: unicode
+   host: localhost
+   pool: 5
+   database: cms_development
+   username: railsuser
+   password: root
+
+test:
+   adapter: postgresql
+   encoding: unicode
+   database: cms_test
+   host: localhost
+   pool: 5
+   username: railsuser
+   password: root
+ 
+production:
+   adapter: postgresql
+   encoding: unicode
+   database: cms_production
+   host: localhost
+   pool: 5
+   username: railsuser
+   password: root

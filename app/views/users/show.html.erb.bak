@@ -1,0 +1,71 @@
+	
+
+
+
+
+<% if current_user %>
+<% if current_user.usertypeid==2 %>
+<marquee><a href="http://localhost:3000/complains/new" style="font-size:25px;color:blue;" >Register New Complain</a></marquee>
+<div >
+<form action="show" method="put">
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort By</strong>
+<select name="fetch" onchange="this.form.submit()" class="form-control">
+     <option  value="">-----Select-----</option>  
+    <option  value="sort-by-latest-ward">Latest Ward Wise</option>   
+     <option value="sort-by-oldest-ward">Oldest Ward Wise</option> 
+    <option value="sort-by-latest-zone">Latest Zone Wise</option>   
+    <option value="sort-by-oldest-zone">Oldest Zone Wise</option>   
+</select>
+</form>
+   
+</div>
+<% else %>
+<div >
+<form action="show" method="put">
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort By</strong>
+<select name="fetch" onchange="this.form.submit()" class="form-control">
+     <option  value="">-----Select-----</option>  
+    <option value="sort-by-latest-zone-admin">Latest Zone Wise</option>   
+    <option value="sort-by-oldest-zone-admin">Oldest Zone Wise</option>   
+</select>
+</form>
+</div>
+<% end %>
+
+
+<div class="transitions-enabled" id="complains">
+     <% if @complains.empty? %>
+        <h4> There are no complains in your area!</h4>
+    <% else %>
+		<% @complains.each do |c| %>
+		   <div class="box panel panel-default">
+               <img src= "<%= c.imageurl_url%>" width=250px height=200px/>
+		  
+			  <div class="panel-body">
+				  <h2>
+					  <%= link_to c.title, c %>
+				  </h2>
+				 
+					   <p class="user">
+						   Submitted by
+						   <%= User.where(:username=>c.public_username).first.firstname %>&nbsp; <%= User.where(:username=>c.public_username).first.lastname %>
+					   </p>
+                   <div class="btn-group pull-left">
+                       <p>Status:<strong><%= c.status%></strong></p>
+                      </div>
+				   <div class="btn-group pull-right">
+                        <% if current_user.usertypeid==2%>
+                      <form action="http://localhost:3000/complains/addvote" method="post">
+                          <input type="hidden" name="vote" value="<%= c.id %>" />
+                            <input type="hidden" name="location" value="<%=request.original_url%>" />
+                        <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
+                    </form>
+                       <%end%>
+			      </div>
+				  
+			  </div>
+		   </div>
+		<% end %>
+</div>
+<% end %>
+<%end%>

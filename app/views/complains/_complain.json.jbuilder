@@ -1,0 +1,2 @@
+json.extract! complain, :id, :admin_username, :public_username, :wardid, :title, :description, :comment, :votecount, :register_date, :resolved_date, :status, :imageurl, :created_at, :updated_at
+json.url complain_url(complain, format: :json)

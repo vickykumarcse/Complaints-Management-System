@@ -1,0 +1,106 @@
+	
+
+
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Contactno</th>
+      <th>Email</th>
+	  <th>Ward No.</th>
+	  <th>Ward Name</th>
+	   <th>Zone No.</th>
+	  <th>Zone name</th>
+      <th>Usertypeid</th>
+    </tr>
+  </thead>
+
+  <tbody>
+ 
+      <tr>
+        <td><%= current_user.username %></td>
+        <td><%= current_user.firstname %></td>
+        <td><%= current_user.lastname %></td>
+        <td><%= current_user.contactno %></td>
+        <td><%= current_user.email %></td>
+		<td><%= Ward.where(:wardno=>current_user.wardid).first.wardno %></td>
+		<td><%= Ward.where(:wardno=>current_user.wardid).first.wardname %></td>
+        <td><%= Ward.where(:wardno=>current_user.wardid).first.zoneid %></td>
+		<td><%= Zone.where(:id=>Ward.where(:wardno=>current_user.wardid).first.zoneid).first.zonename %></td>
+        <td><%= current_user.usertypeid %></td>
+		
+		
+		
+		
+      
+      </tr>
+	  
+  </tbody>
+</table> -->
+
+<% if current_user %>
+<% if current_user.usertypeid==2 %>
+<div  class="transitions-enabled" id="complains">
+<form action="show" method="put">
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort By</strong>
+<select name="fetch" onchange="this.form.submit()" class="form-control">
+     <option  value="">-----Select-----</option>  
+    <option  value="sort-by-latest-ward">Latest Ward Wise</option>   
+     <option value="sort-by-oldest-ward">Oldest Ward Wise</option> 
+    <option value="sort-by-latest-zone">Latest Zone Wise</option>   
+    <option value="sort-by-oldest-zone">Oldest Zone Wise</option>   
+</select>
+</form>
+   
+</div>
+<% else %>
+<div  class="transitions-enabled" id="complains">
+<form action="show" method="put">
+  <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort By</strong>
+<select name="fetch" onchange="this.form.submit()" class="form-control">
+     <option  value="">-----Select-----</option>  
+    <option value="sort-by-latest-zone-admin">Latest Zone Wise</option>   
+    <option value="sort-by-oldest-zone-admin">Oldest Zone Wise</option>   
+</select>
+</form>
+</div>
+<% end %>
+
+
+<div class="transitions-enabled" id="complains">
+     <% if @complains.empty? %>
+        <h4> There are no complains in your area!</h4>
+    <% else %>
+		<% @complains.each do |c| %>
+		   <div class="box panel panel-default">
+               <img src= <%= c.imageurl_url%>/>
+		  
+			  <div class="panel-body">
+				  <h2>
+					  <%= link_to c.title, c %>
+				  </h2>
+				 
+					   <p class="user">
+						   Submitted by
+						   <%= User.where(:username=>c.public_username).first.firstname %>&nbsp; <%= User.where(:username=>c.public_username).first.lastname %>
+					   </p>
+                   <div class="btn-group pull-left">
+                            <p>Status:<button type="button" class="btn btn-info"><%= c.status%></button></p>
+                      </div>
+				   <div class="btn-group pull-right">
+                      <form action="http://localhost:3000/complains/addvote" method="post">
+                          <input type="hidden" name="vote" value="<%= c.id %>" />
+                            <input type="hidden" name="location" value="<%=request.original_url%>" />
+                        <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
+                    </form>
+			      </div>
+				  
+			  </div>
+		   </div>
+		<% end %>
+</div>
+<% end %>
+<%end%>
+ <%= link_to "Register New Complain", :controller=> "complains", :action => "new" %>

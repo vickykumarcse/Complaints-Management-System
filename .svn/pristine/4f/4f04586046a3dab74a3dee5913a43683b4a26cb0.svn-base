@@ -1,0 +1,128 @@
+<!--<p id="notice"><%= notice %></p>-->
+<div class="row" id="complain_show">
+	  <div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+                 <div class="panel-heading complain_image"> 
+                       <% @complain=Complain.find(params[:id])%>
+					 <img src=" <%= @complain.imageurl_url %>" height="250px" />
+			     </div>
+    <div class="panel-body">
+                    <p>
+					  <strong>Complain Id:</strong>
+					 C0000<%= @complain.id %>
+					</p>
+        
+        	        <p>
+					  <strong>Total Vote:</strong>
+					<%= @complain.votecount %>
+					</p>
+                     <p>
+					  <strong>Admin Name:</strong>
+                         <%=User.where(:username=>@complain.admin_username).first.firstname%>&nbsp;<%=User.where(:username=>@complain.admin_username).first.lastname %>
+					</p>
+                     <p>
+					  <strong>Admin Contact No:</strong>
+				 +91 <%=User.where(:username=>@complain.admin_username).first.contactno%>
+					</p>
+                    
+				
+        	        <p>
+					  <strong>Title:</strong>
+					<%= @complain.title %>
+					</p>
+             
+					
+        	        <p>
+					  <strong>Description:</strong>
+                      <%= @complain.description %>
+					</p>
+             
+                     <p>
+					  <strong>Registered By:</strong>
+                     <%=User.where(:username=>@complain.public_username).first.firstname%>&nbsp;<%=User.where(:username=>@complain.public_username).first.lastname %>
+					</p>
+					
+        	        <p>
+					  <strong>Zone name:</strong>
+   <%= Zone.where(:admin_username=>@complain.admin_username).first.zonename%>
+					</p>
+             
+						
+        	        <p>
+					  <strong>Ward Name:</strong>
+     <%= Ward.where(:wardno=>@complain.wardid).first.wardname %>
+					</p>
+              
+        	        <p>
+					  <strong>Locality:</strong>
+                   <%= @complain.locality %>
+					</p>
+          
+                 
+        	        <p>
+					  <strong>Register Date:</strong>
+                   <%= @complain.register_date %>
+					</p>
+            
+        	        <p>
+					  <strong>Status:</strong>
+                   <%= @complain.status %>
+					</p>
+            <%if current_user.usertypeid==2 %>
+                    <p>
+					  <strong>Comment:</strong>
+                        <%= @complain.comment %>
+					</p>
+                <% end%>
+                      <p>
+					  <strong>Resolved Date:</strong>
+                     <%= @complain.resolved_date %>
+					</p>
+       
+        
+          <% if current_user.usertypeid==1 %>
+             
+   <%= simple_form_for @complain, html: {multipart: true} do |f| %>
+	               <% if @complain.errors.any? %>
+			         <div id="errors">
+                    <h4>
+                        <%= pluralize(@complain.errors.count, "error") %>
+                        prevented this complain from saving
+                   </h4>
+			  <ul>
+				<% @complain.errors.full_messages.each do |msg| %>
+				  <li>
+					<%= msg %>
+				  </li>
+				<% end %>
+			  </ul>
+			</div>
+	           <% end %>
+          <div class="form-group">
+              
+        	        <p><strong>Status:</strong>
+                        <%= f.select :status, options_for_select([ "Assigned", "In Progress", "On Hold", "Resolved"]),{}, :class => 'form-control' %>
+					</p>
+               </div>
+                <div class="form-group">
+        	        <p>
+					  <strong>Comment:</strong>
+                        <%= f.text_area(:comment,:class=>"form-control") %>
+					</p>
+               </div>
+	  
+         
+         <div class="form-actions">
+                <%= f.submit :class =>'btn btn-primary center-block' %>
+            </div>
+            <% end %> 
+        <% end %>
+       
+              </div>
+		  </div>
+	  </div>				
+  </div>
+
+
+
+

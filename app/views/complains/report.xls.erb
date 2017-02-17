@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+           <Cell><Data ss:Type="String">ADMIN NAME</Data></Cell>
+            <Cell><Data ss:Type="String">CONTACT NO.</Data></Cell>
+            <Cell><Data ss:Type="String">ZONE NAME</Data></Cell>
+             <Cell><Data ss:Type="String">WARD NAME</Data></Cell>
+        <Cell><Data ss:Type="String">TITLE</Data></Cell>
+        <Cell><Data ss:Type="String">DESCRIPTION</Data></Cell>
+            <Cell><Data ss:Type="String">REGISTERED BY</Data></Cell>
+        <Cell><Data ss:Type="String">LIKES</Data></Cell>
+           <Cell><Data ss:Type="String">COMMENT</Data></Cell>
+           <Cell><Data ss:Type="String">REGISTER DATE</Data></Cell>
+            <Cell><Data ss:Type="String">STATUS</Data></Cell>
+           <Cell><Data ss:Type="String">LOCALITY</Data></Cell>
+            <Cell><Data ss:Type="String">RESOLVED DATE</Data></Cell>
+        </Row>
+    <% @complains.each do |c| %>
+      <Row>
+        <Cell><Data ss:Type="String">C0000<%= c.id %></Data></Cell>
+          <Cell><Data ss:Type="String"><%=User.where(:username=>c.admin_username).first.firstname%>&nbsp;<%=User.where(:username=>c.admin_username).first.lastname %></Data></Cell>
+     <Cell><Data ss:Type="String">+91<%=User.where(:username=>c.admin_username).first.contactno%></Data></Cell>
+    <Cell><Data ss:Type="String"><%= Zone.where(:admin_username=>c.admin_username).first.zonename%></Data></Cell>
+          <Cell><Data ss:Type="String"><%= Ward.where(:wardno=>c.wardid).first.wardname %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.title %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.description %></Data></Cell>
+        <Cell><Data ss:Type="String">  <%=User.where(:username=>c.public_username).first.firstname%>&nbsp;<%=User.where(:username=>c.public_username).first.lastname %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.votecount %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.comment %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.register_date %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.status %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.locality %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.resolved_date %></Data></Cell>
+    
+        </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

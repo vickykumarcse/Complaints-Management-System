@@ -1,0 +1,57 @@
+<div class="col-md-6 col-md-offset-3">
+	 <div class="row">
+		 <div class="panel panel-default">
+			  <div class="panel-heading">
+			      <h2>Edit your Account</h2>
+			  </div>
+			  <div class="panel-body">
+
+				<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+				  <%= devise_error_messages! %>
+				  	<div class="form-inputs">
+					 <div class="form-group">
+						<%= f.input :username, :readonly=>true, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+					</div>
+					 <div class="form-group">
+					<%= f.input :firstname, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+					</div>
+					 <div class="form-group">
+					<%= f.input :lastname, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+					</div>
+					 <div class="form-group">
+					<%= f.input :contactno, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+					</div>
+					 <div class="form-group">
+					<%= f.input :email, required: true, autofocus: true, input_html: { class: 'form-control' } %>
+					</div>
+					 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+						<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+					 <% end %>
+					  <div class="form-group">
+                          <strong>Zone Name</strong>
+                         <select class="form-control" readonly>
+                             <option> <%=Zone.where(:id=>(Ward.where(:wardno=>current_user.wardid).first.zoneid)).first.zonename %></option>
+                           </select>
+                     </div> 
+					 <%= f.label :Ward_Name %><br />
+                     <div class="form-control">
+                         <%=f.collection_select:wardid,Ward.where(:wardno=>current_user.wardid),:wardno,:wardname%>
+                     </div>  
+                    
+
+				   <div class="form-group">
+					<%= f.input :current_password, required: true, input_html: { class: 'form-control' } %>
+				  </div>
+
+				  <div class="form-actions">
+						   <%= f.button :submit, "Update", class: "btn btn-primary center-block" %>
+			     </div>
+				
+				 </div>
+				<% end %>
+                  </div>
+				</div>
+		 </div>
+	 </div>
+</div>
+
