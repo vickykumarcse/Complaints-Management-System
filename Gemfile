@@ -20,7 +20,7 @@ gem 'omniauth', '~> 1.3.1'
 gem 'omniauth-auth0', '~> 1.4.2'
 gem 'auth0'
 gem 'omniauth-google-oauth2', '~> 0.2.1'
-
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
