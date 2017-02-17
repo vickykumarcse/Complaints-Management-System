@@ -26,13 +26,15 @@
                             <p>Status:<strong><%= c.status%></strong></p>
                       </div>
 				    <div class="btn-group pull-right">
-                           <% if current_user.usertypeid==2%>
+                           <% if current_user.usertypeid==2 %>
                       <form action="complains/addvote" method="post">
                           <input type="hidden" name="vote" value="<%= c.id %>" />
                             <input type="hidden" name="location" value="<%=request.original_url%>" />
                         <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
                     </form>
-                        <%end%>
+                     <%else%>
+                       Likes: <strong><%= c.votecount %></strong>
+                       <%end%>
 			      </div>
 			  </div>
 		   </div>
