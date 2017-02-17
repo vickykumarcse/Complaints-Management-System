@@ -1,0 +1,73 @@
+id,wardno,wardname,zoneid
+1,55,R.P.T.S,1
+2,56,Sai Mandir,1
+3,68,Narendra Nagar,1
+4,69,Khamla,1
+5,70,Gopal Nagar,1
+6,71,Takli Sim,1
+7,72,VimanTal,1
+8,21,Civil Lines,2
+9,24,Vayusena Nagar,2
+10,25,Ravi Nagar,2
+11,52,Diksha Bhoomi,2
+12,53,Ambazari,2
+13,54,V.N.I.T,2
+14,48,Reshimbagh,3
+15,49,Medical,3
+16,58,Vishwakarma Nagar,3
+17,59,Raghuji Nagar,3
+18,62,Mhalgi Nagar,3
+19,64,Ayodhya Nagar,3
+20,65,Naik Nagar,3
+21,67,Manewada,3
+22,26,Maharajbagh,4
+23,27,Gandhi Sagar,4
+24,50,Rambagh,4
+25,51,Jailward,4
+26,57,Ajni,4
+27,66,Rameshwari,4
+28,44,Hasanbagh,5
+29,45,Vathoda,5
+30,46,Ramanamaroti,5
+31,47,Nehru Nagar,5
+32,60,Sakkardara,5
+33,61,Tajbagh,5
+34,63,Bidipeth,5
+35,28,Mominpura,6
+36,29,Hansapuri,6
+37,30,Jagnath Budhwari,6
+38,39,Mahatma Gandhi,6
+39,40,Gandhibagh,6
+40,41,Mahal,6
+41,42,Quilla,6
+42,13,Rani Durgavati Nagar,7
+43,14,Dhammadeep Nagar,7
+44,15,Kalamna,7
+45,16,Shanti Nagar,7
+46,17,Bastarbari,7
+47,18,Naik Talaav,7
+48,19,Barsenagar,7
+49,31,Maskasath,7
+50,32,Lakadganj,8
+51,33,Diptee Signal,8
+52,34,Bharatnagar,8
+53,35,Pardi,8
+54,36,Wardhman Nagar,8
+55,37,Hiwari Nagar,8
+56,38,Goraba Nagar,8
+57,43,Bhuteshwar Nagar,8
+58,1,Nara,9
+59,2,Nari,9
+60,3,Garib Nawaz Nagar,9
+61,4,Mahendra Nagar,9
+62,5,Sidharth Nagar,9
+63,11,Indora,9
+64,12,Vaishali Nagar,9
+65,20,Lashkaribagh,9
+66,6,Jaripatka,10
+67,7,Jhingabai Takli,10
+68,8,Gorewada,10
+69,9,Police Line Takli,10
+70,10,Mekosabagh,10
+71,22,Seminary Hills,10
+72,23,Dabha,10

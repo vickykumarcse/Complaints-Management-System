@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+zones = Rails.root.join("public", "fixtures", "zone.csv")
+wards = Rails.root.join("public", "fixtures", "ward.csv")
+
+CSV.foreach(zones, headers: true) do |row|
+  zone = row['zonename']
+  admin_username = row['admin_username']
+  options = {zonename: zone, admin_username: admin_username}
+    zones = Zone.create!(options)  
+end
+
+CSV.foreach(wards, headers: true) do |row|
+  wardno = row['wardno']
+  wardname = row['wardname']
+  zoneid = row['zoneid']
+  options = {wardno: wardno, wardname: wardname, zoneid: zoneid}
+  wards = Ward.create!(options)  
+end
