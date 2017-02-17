@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
+user_type1 = Usertype.create(usertype: "admin")
+user_type2 = Usertype.create(usertype: "public")
+
 zones = Rails.root.join("public", "fixtures", "zone.csv")
 wards = Rails.root.join("public", "fixtures", "ward.csv")
 
