@@ -89,18 +89,18 @@ def update
       
 respond_to do |format|
       if @complain.update(complain_update)
-        format.html { redirect_to @complain, notice: 'Complain was successfully updated.' }
-        format.json { render :show, status: :ok, location: @complain }
-      else
-        format.html { render :edit }
-        format.json { render json: @complain.errors, status: :unprocessable_entity }
-      end
-
-      if params[:status]=="Resolved"
+         if params[:status]=="Resolved"
         date=Time.new
         $resolved_date=date.strftime("%Y-%m-%d")
         @complain.update(:resolved_date=> $resolved_date)
+        end
+        format.html { redirect_to @complain, notice: 'Complain was successfully updated.' }
+        format.json { render :show, status: :ok, location: @complain }
+      else
+        format.html { render :show }
+        format.json { render json: @complain.errors, status: :unprocessable_entity }
       end
+
   end
 end
 
