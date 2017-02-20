@@ -101,8 +101,6 @@ respond_to do |format|
         $resolved_date=date.strftime("%Y-%m-%d")
         @complain.update(:resolved_date=> $resolved_date)
       end
-    end
-     
   end
 end
 
