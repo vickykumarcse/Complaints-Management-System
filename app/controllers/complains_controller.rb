@@ -103,7 +103,6 @@ respond_to do |format|
 
 def complain_update
 
-
     params.require(:complain).permit(:status,:comment)
 end
 
