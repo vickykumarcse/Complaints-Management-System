@@ -79,7 +79,8 @@
                      <%= @complain.resolved_date %>
 					</p>
        
-        
+        <%= params[:status] %>
+         <%= $resolved_date %>
           <% if current_user.usertypeid==1 %>
              
    <%= simple_form_for @complain, html: {multipart: true} do |f| %>
