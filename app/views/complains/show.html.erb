@@ -79,8 +79,6 @@
                      <%= @complain.resolved_date %>
 					</p>
        
-        <%= params[:status] %>
-         <%= $resolved_date %>
           <% if current_user.usertypeid==1 %>
              
    <%= simple_form_for @complain, html: {multipart: true} do |f| %>
@@ -100,10 +98,11 @@
 			</div>
 	           <% end %>
           <div class="form-group">
-              
+              		<% if @complain.status != "Resolved" %>
         	        <p><strong>Status:</strong>
                         <%= f.select :status, options_for_select([ "Assigned", "In Progress", "On Hold", "Resolved"]),{}, :class => 'form-control' %>
 					</p>
+				   <% end %>
                </div>
                 <div class="form-group">
         	        <p>
