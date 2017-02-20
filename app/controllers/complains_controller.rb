@@ -85,9 +85,7 @@ class ComplainsController < ApplicationController
 
   # PATCH/PUT /complains/1
   # PATCH/PUT /complains/1.json
-  def update
-      
-      
+def update
       
 respond_to do |format|
       if @complain.update(complain_update)
@@ -97,9 +95,16 @@ respond_to do |format|
         format.html { render :edit }
         format.json { render json: @complain.errors, status: :unprocessable_entity }
       end
+
+      if params[:status]=="Resolved"
+        date=Time.new
+        $resolved_date=date.strftime("%Y-%m-%d")
+        @complain.update(:resolved_date=> $resolved_date)
+      end
     end
      
   end
+end
 
 def complain_update
 
