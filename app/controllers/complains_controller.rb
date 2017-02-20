@@ -89,7 +89,7 @@ def update
       
 respond_to do |format|
       if @complain.update(complain_update)
-          if params[:status]=="Resolved"
+          if @complain.status == "Resolved"
            $date=Time.new
            $resolved_date=$date.strftime("%Y-%m-%d")
            @complain.update(:resolved_date=> $resolved_date)
