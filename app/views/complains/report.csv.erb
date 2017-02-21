@@ -1,0 +1,18 @@
+<%- headers = ["ID","ADMIN NAME", "CONTACT NO","ZONE NAME","WARD NAME","TITLE","DESCRIPTION","REGISTERED BY","LIKES","COMMENTS","REGISTERED DATE","STATUS","LOCALITY","RESOLVED DATE"] -%>
+<%= CSV.generate_line headers %>
+<%- @complains.each do |c| -%>
+<%= CSV.generate_line(['C0000'+ c.id.to_s, 
+	User.where(:username=>c.admin_username).first.firstname.to_s + ' ' + User.where(:username=>c.admin_username).first.lastname.to_s,
+	User.where(:username=>c.admin_username).first.contactno,
+	Zone.where(:admin_username=>c.admin_username).first.zonename,
+	Ward.where(:wardno=>c.wardid).first.wardname,
+	c.title,
+	c.description,
+	User.where(:username=>c.public_username).first.firstname.to_s + ' ' + User.where(:username=>c.public_username).first.lastname.to_s,
+	c.votecount,
+	c.comment,
+	c.register_date,
+	c.status,
+	c.locality,
+	c.resolved_date ]) -%>
+<%- end -%>
