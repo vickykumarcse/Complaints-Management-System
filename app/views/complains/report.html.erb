@@ -1,7 +1,8 @@
 
- <!--<%=link_to "download report in csv", report_complains_path(format: "csv")%>-->
+
 <div style="text-align:center;">
-    <%=link_to "Download Complaints Report in Excel", report_complains_path(format: "xls"), :class=>"btn btn-warning", :style=>"color:white;"%></div>
+    <%=link_to "Download Complaints Report", report_complains_path(format: "csv"), :class=>"btn btn-warning", :style=>"color:white;"%></div>
+
 <div class="transitions-enabled" id="complains">
   
     <% if @complains.empty? %>
