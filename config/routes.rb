@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :usertypes
   resources :wards
   resources :zones
+  resources :feedbacks
  
   root to: "users#index"
 
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
  post "admin/users/show"
  post "complains/addvote"
     
-
+ post "feedback/addFeedback"
   
  post "admin/users/show"
  post "complains/addvote"

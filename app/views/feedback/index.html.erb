@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Feedbacks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rating</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feedbacks.each do |f| %>
+      <tr>
+        <td><%= f.name %></td>
+        <td><%= f.rating %></td>
+        <td><%= f.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
