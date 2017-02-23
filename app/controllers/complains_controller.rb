@@ -20,6 +20,7 @@ class ComplainsController < ApplicationController
       @complain=Complain.where(:id=>params[:id])
       @complain.update(:close=> 'TRUE')
     end
+    @complains = @complains.paginate(:page => params[:page], :per_page => 6)
   end
 
   def report
@@ -31,6 +32,7 @@ class ComplainsController < ApplicationController
         headers['Content-Type'] ||= 'text/csv'
       end
     end
+    @complains = @complains.paginate(:page => params[:page], :per_page => 6)
   end
 
 

@@ -52,6 +52,7 @@ class UsersController < ApplicationController
              @complains=Complain.where(:admin_username=>current_user.username).order("created_at")
            end
       end
+      @complains = @complains.paginate(:page => params[:page], :per_page => 6)
   end
     
 
