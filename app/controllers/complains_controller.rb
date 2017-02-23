@@ -11,7 +11,7 @@ class ComplainsController < ApplicationController
   def myComplains
     @complains=Complain.where(:public_username=>current_user.username)
     if params[:fetch]=="all"
-      @complains=Complain.where(:public_username=>current_user.username)
+      @complains=Complain.where("public_username=? AND status != ?", current_user.username, 'Resolved')
     elsif params[:fetch]=="resolved"
       @complains=Complain.where(:public_username=>current_user.username, :status=>"Resolved", :close=>FALSE)
     elsif params[:fetch]=="closed"
@@ -32,7 +32,7 @@ class ComplainsController < ApplicationController
         headers['Content-Type'] ||= 'text/csv'
       end
     end
-  
+
   end
 
 
