@@ -11,7 +11,7 @@ class ComplainsController < ApplicationController
   def myComplains
     @complains=Complain.where(:public_username=>current_user.username)
     if params[:fetch]=="all"
-      @complains=Complain.where("public_username=? AND status != ?", current_user.username, 'Resolved')
+      @complains=Complain.where(:public_username=>current_user.username)
     elsif params[:fetch]=="resolved"
       @complains=Complain.where(:public_username=>current_user.username, :status=>"Resolved", :close=>FALSE)
     elsif params[:fetch]=="closed"
