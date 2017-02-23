@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :usertypes
   resources :wards
   resources :zones
-  
+  resources :feedbacks
  
   root to: "users#index"
 
@@ -31,9 +31,6 @@ Rails.application.routes.draw do
  post "admin/users/show"
  post "complains/addvote"
     
-
- get "feedback/new"
- get "feedback/index"
 
   post "admin/users/show"
   get "/auth/oauth2/callback" => "auth0#callback"
