@@ -7,7 +7,21 @@
 			   <div class="panel-body">
 
                 <form action="new">
-					
+					<% if @feedback.errors.any? %>
+						<div id="errors">
+							<h4>
+							<%= pluralize(@feedback.errors.count, "error") %>
+								prevented this feedback from saving
+							</h4>
+					  		<ul>
+							<% @feedback.errors.full_messages.each do |msg| %>
+						 		 <li>
+									<%= msg %>
+						  		</li>
+							<% end %>
+						</ul>
+						</div>
+					<% end %>
 				<div class="form-inputs">
 				
 				<div class="form-group">
