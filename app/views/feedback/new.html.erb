@@ -6,7 +6,7 @@
 			   </div>
 			   <div class="panel-body">
 
-                 <%= form_for(@feedback, url: "new") do |f| %>
+                <form action="new">
 					<% if @feedback.errors.any? %>
 						<div id="errors">
 							<h4>
@@ -26,26 +26,35 @@
 				
 				<div class="form-group">
 				<label>Your Name</label>
-                    <%= f.text_field :name, required: true, autofocus: true,:placeholder=>"Your Name", :class=>"form-control" %>
+     
+                    <input type="text" name="name" class="form-control" required>
 				</div>
 
 				<div class="form-group">
 				<label>Rating (1=Lowest 5=Highest)</label>
-                    <%= f.select :rating, options_for_select(["---Select---","1","2","3","4","5"]),{}, :class => 'form-control' %>
+               
+                    <select name="rating" class="form-control">
+                     <option>---Select---</option>
+                     <option>1</option>
+                     <option>2</option>
+                      <option>3</option>
+                       <option>4</option>
+                        <option>5</option>
+                    </select>
 				</div>
 				<div class="form-group">
 				<label>Comment</label>
-                    <%= f.text_area :comment, required: true, autofocus: true,:placeholder=>"Comment", :class=>"form-control" %>
+                      <input type="text" name="comment" class="form-control" required>
 				</div>
 				
 			  
 				 <div class="form-actions">
-						<%= f.submit "Submit", class: "btn btn-primary center-block"  %>
+
+					<input type="submit" class="btn btn-primary center-block">
 				 </div>
 			</div>
 			  
-			<% end %>
-
+			</form>
 
 			</div>
 		</div>
