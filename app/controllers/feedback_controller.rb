@@ -3,13 +3,15 @@ class FeedbackController < ApplicationController
 		if params[:name] !=""
 			@feedback=Feedback.new(:name => params[:name], :rating => params[:rating], :comment => params[:comment])
 			if @feedback.save
-				flash[:notice]="Thank you for your feedback!"
+				flash[:success]="Thank you for your feedback!"
 				
 			else
-				flash[:notice]="Feedback submission error!"
+				flash[:success]="Feedback submission error!"
 			end
+		else
+			flash[:success]=""
 	     end
-	     
+
 	end
 
 	def index
