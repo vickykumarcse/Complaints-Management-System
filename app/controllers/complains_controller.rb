@@ -5,7 +5,8 @@ class ComplainsController < ApplicationController
   # GET /complains
   # GET /complains.json
   def index
-    @complains=Complain.all
+    flash[:alert]='You are not authorized to access this page.'
+    redirect_to root_path
   end
 
 
@@ -114,6 +115,8 @@ end
   # DELETE /complains/1
   # DELETE /complains/1.json
   def destroy
+    flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
     @complain.destroy
     respond_to do |format|
       format.html { redirect_to complains_url, notice: 'Complain was successfully destroyed.' }

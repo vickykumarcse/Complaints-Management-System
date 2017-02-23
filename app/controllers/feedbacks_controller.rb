@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
 	skip_before_action :authenticate_user!
+  before_action :check_user
 
 	def new
 	  @feedback = Feedback.new
@@ -25,5 +26,13 @@ class FeedbacksController < ApplicationController
 
 	def feedback_params
      params.require(:feedback).permit(:name, :rating , :comment)
+   end
+
+   private
+   def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
    end
 end
