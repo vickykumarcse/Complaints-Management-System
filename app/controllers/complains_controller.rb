@@ -32,7 +32,7 @@ class ComplainsController < ApplicationController
         headers['Content-Type'] ||= 'text/csv'
       end
     end
-    @complains = @complains.paginate(:page => params[:page], :per_page => 6)
+  
   end
 
 
