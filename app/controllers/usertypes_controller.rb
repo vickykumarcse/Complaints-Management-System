@@ -1,6 +1,6 @@
 class UsertypesController < ApplicationController
   before_action :set_usertype, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_user
   # GET /usertypes
   # GET /usertypes.json
   def index
@@ -71,4 +71,11 @@ class UsertypesController < ApplicationController
     def usertype_params
       params.require(:usertype).permit(:usertype)
     end
+
+     def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
+   end
 end

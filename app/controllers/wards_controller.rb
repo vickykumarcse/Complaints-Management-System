@@ -1,6 +1,6 @@
 class WardsController < ApplicationController
   before_action :set_ward, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_user
   # GET /wards
   # GET /wards.json
   def index
@@ -71,4 +71,11 @@ class WardsController < ApplicationController
     def ward_params
       params.require(:ward).permit(:wardno, :wardname, :zoneid)
     end
+
+     def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
+   end
 end

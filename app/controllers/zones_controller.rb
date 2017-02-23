@@ -1,5 +1,6 @@
 class ZonesController < ApplicationController
   before_action :set_zone, only: [:show, :edit, :update, :destroy]
+  before_action :check_user
 
   # GET /zones
   # GET /zones.json
@@ -71,4 +72,11 @@ class ZonesController < ApplicationController
     def zone_params
       params.require(:zone).permit(:zonename, :admin_username)
     end
+
+     def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
+   end
 end

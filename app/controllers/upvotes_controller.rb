@@ -1,6 +1,6 @@
 class UpvotesController < ApplicationController
   before_action :set_upvote, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_user, only: [:edit,:report,:update]  
   # GET /upvotes
   # GET /upvotes.json
   def index
@@ -71,4 +71,11 @@ class UpvotesController < ApplicationController
     def upvote_params
       params.require(:upvote).permit(:has_many, :has_many)
     end
+
+     def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
+   end
 end

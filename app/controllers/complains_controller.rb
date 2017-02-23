@@ -1,6 +1,7 @@
 class ComplainsController < ApplicationController
   before_action :set_complain, only: [:show, :update, :destroy]
-  skip_before_filter :verify_authenticity_token  
+  skip_before_filter :verify_authenticity_token
+  before_action :check_user, only: [:edit,:report,:update]  
   # GET /complains
   # GET /complains.json
   def index
@@ -64,9 +65,7 @@ end
 
   # GET /complains/1/edit
   def edit
-    if current_user.usertypeid==2
-      redirect_to 'https://cms-marauders.herokuapp.com'
-    end
+    
   end
   
   # POST /complains
@@ -136,5 +135,12 @@ end
      defaults={admin_username: $admin,public_username: current_user.username,wardid: current_user.wardid,votecount: 0,register_date: $regdate,status: 'Assigned', close: FALSE }
 
      params.require(:complain).permit(:admin_username, :public_username , :wardid , :title, :description , :locality, :votecount , :register_date , :status , :imageurl, :close ).reverse_merge(defaults)
+   end
+
+   def check_user
+    if current_user.usertypeid==2
+      flash[:alert]='You are not authorized to access this page.'
+      redirect_to root_path
+    end
    end
  end
