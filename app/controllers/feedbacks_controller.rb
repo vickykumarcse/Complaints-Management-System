@@ -31,7 +31,7 @@ class FeedbacksController < ApplicationController
    private
    def check_user
     if current_user.usertypeid==2
-      flash[:alert]='You are not authorized to access this page.'
+      flash[:alert]='You are not authorized to access this page1.'
       redirect_to root_path
     end
    end
