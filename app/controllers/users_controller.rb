@@ -33,11 +33,11 @@ class UsersController < ApplicationController
              else 
                 @complains=Complain.where(:admin_username=>current_user.username).order("votecount DESC")
              end
-      elsif $str=="sort-by-zoneno"
+      elsif $str=="sort-by-status"
            if current_user.usertypeid==2
-               @complains=Complain.where(:wardid=>current_user.wardid).order("wardid DESC")
+               @complains=Complain.where(:wardid=>current_user.wardid).order("status")
            else
-                @complains=Complain.where(:admin_username=>current_user.username).order("wardid DESC")
+                @complains=Complain.where(:admin_username=>current_user.username).order("status")
            end
       elsif $str=="sort-by-latest"
         if current_user.usertypeid==2
