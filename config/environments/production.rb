@@ -101,7 +101,7 @@ Rails.application.configure do
   domain: "gmail.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: "cms.marauders@gmail.com",
-  password: "cms123456"
+  user_name: "",
+  password: ""
   }
 end
