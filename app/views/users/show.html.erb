@@ -34,7 +34,7 @@
                       </div>
 				   <div class="btn-group pull-right">
                         <% if current_user.usertypeid==2%>
-                      <form action="https://cms-marauders.herokuapp.com/complains/addvote" method="post">
+                      <form action="<%= root_path %>/complains/addvote" method="post">
                           <input type="hidden" name="vote" value="<%= c.id %>" />
                             <input type="hidden" name="location" value="<%=request.original_url%>" />
                         <p><button type="button" onclick="this.form.submit()" class="btn btn-success"><%= c.votecount%> <span class="glyphicon glyphicon-thumbs-up"> </span></button> </p>
