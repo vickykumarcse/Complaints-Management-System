@@ -1,4 +1,0 @@
-class Complain < ApplicationRecord
-	validates :title, :description, :locality, :imageurl, presence: true
-	mount_uploader :imageurl, ImageurlUploader
-end
