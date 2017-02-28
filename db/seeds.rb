@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
-Complain.delete_all
-Upvote.delete_all
+#Complain.delete_all
+#Upvote.delete_all
 
 # user_type1 = Usertype.create(usertype: "admin")
 # user_type2 = Usertype.create(usertype: "public")
